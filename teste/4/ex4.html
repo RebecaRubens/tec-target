@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Vamos descobrir o percentual de representação que cada estado teve dentro do valor total mensal da
+        distribuidora! :D </h1> <br><br><br>
+    <button onclick="calcular()">Vamos!</button>
+    <div id="msg"></div>
+</body>
+
+</html>
+<script>
+
+    function calcular() {
+
+        var sp = 67836.43;
+        var rj = 36678.66;
+        var mg = 29229.88;
+        var es = 27165.48;
+        var outros = 19849.53;
+
+        var total = sp + rj + mg + es + outros;
+
+        function formatar(valor) {
+            return valor.toFixed(2).replace('.', ',');
+        }
+        var mensagem = 'O faturamento por estado é: <br>' +
+            'SP – R$67.836,43 <br>' +
+            'RJ – R$36.678,66 <br>' +
+            'MG – R$29.229,88 <br>' +
+            'ES – R$27.165,48 <br>' +
+            'Outros – R$19.849,53 <br> <br>' +
+            'O valor total do faturamento é: R$' + formatar(total) + '<br> <br>' +
+            'O percentual de representação por estado é: <br>' +
+            'SP: ' + formatar(sp / total * 100) + '% <br>' +
+            'RJ: ' + formatar(rj / total * 100) + '% <br>' +
+            'MG: ' + formatar(mg / total * 100) + '% <br>' +
+            'ES: ' + formatar(es / total * 100) + '% <br>' +
+            'Outros: ' + formatar(outros / total * 100) + '% <br>';
+
+        document.getElementById('msg').innerHTML = mensagem;
+    }
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Faturamento Diário</h1> <br><br>
+    Insira seus valores de faturamento diário ao longo do mês <input type="number" id="faturamento"> <br>
+    <button onclick="armazenarFaturamento()">Armazenar</button>
+    <button onclick="verDetalhes()">Ver Detalhes</button>
+
+    <div id="detalhe"></div>
+</body>
+
+</html>
+<script>
+    var faturamento = [];
+    function armazenarFaturamento() {
+        let valor = parseFloat(document.getElementById('faturamento').value);
+        if (!isNaN(valor) && valor >= 0) {
+            faturamento.push(valor);
+            document.getElementById('faturamento').value = '';
+        } else {
+            alert('o Valor inserido é inválido.');
+        }
+    }
+
+    function verDetalhes() {
+        if (faturamento.length === 0) {
+            alert("Você ainda nao inseriu valores a sua lista");
+            return;
+        }
+
+        var detalhe = '<h2> Detalhes: </h2>';
+        var soma = 0;
+        var diasAcimaMedia = 0;
+        for (var i = 0; i < faturamento.length; i++) {
+            detalhe += `Dia ${i + 1}: R$${faturamento[i].toFixed(2)}<br>`;
+            soma += faturamento[i];
+        }
+
+        var media = soma / faturamento.length;
+        for (var i = 0; i < faturamento.length; i++) {
+            if (faturamento[i] > media) {
+                diasAcimaMedia++;
+            }
+        }
+
+        if (faturamento.length > 0) {
+            var menorFaturamento = Math.min(...faturamento);
+            var maiorFaturamento = Math.max(...faturamento);
+
+            detalhe += `<br>Menor valor: R$${menorFaturamento.toFixed(2)}<br>`;
+            detalhe += `<br>Maior valor: R$${maiorFaturamento.toFixed(2)}<br>`;
+            detalhe += `<br>Média do seu faturamento: R$${media.toFixed(2)}<br>`;
+            detalhe += `<br>Dias com faturamento acima da média: ${diasAcimaMedia}<br>`;
+
+        }
+
+        else {
+            detalhe += `<br>Não há dados suficientes para calcular o menor e o maior valor.`;
+        }
+
+        document.getElementById('detalhe').innerHTML = detalhe;
+
+    }
+
+
+
+</script>

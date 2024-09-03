@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Vamos inverter palavras e frases!</h1> <br> <br>
+    insira uma palavra ou frase: <input type="text" id="string"> <br> <br>
+    <button onclick="inverso()">Inverter!</button> <br><br>
+    <div id="msg"></div>
+</body>
+
+</html>
+<script>
+    function inverso() {
+
+        var resultado = '';
+        var string = document.getElementById('string').value;
+
+        for (var i = string.length - 1; i >= 0; i--) {
+            resultado += string[i];
+        }
+
+        document.getElementById('msg').innerHTML = resultado;
+
+    }
+</script>
